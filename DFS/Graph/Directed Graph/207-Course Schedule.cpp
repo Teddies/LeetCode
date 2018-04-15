@@ -20,7 +20,7 @@ public:
 	//                    -------> 4
 	// In this graph, it is valid since there is no ring
 	// But 1 will be visited twice: 0 -> 1 -> 2 -> 3 -> 4, and
-	// 0 -> 1 -> 4
+	//                              0 -> 1 -> 4
 	// So we need to change the 1 into unvisited after each time calling DFS 
 
     unordered_map<int, int> partial;

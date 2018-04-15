@@ -1,3 +1,6 @@
+// Not performs good enough
+// Maybe the positive judgement could be left out
+// i.e. assume all the nodes are positive
 class Solution {
 public:
     bool isLeaf(TreeNode *root) {
