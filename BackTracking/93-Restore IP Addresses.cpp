@@ -4,8 +4,8 @@ public:
         vector<string> res;
         if (s.size() < num) return res;
         if (num == 1) {
-        	// The predicate s.size() > 3 is important
-        	// since it is possible for atoi(s.c_str()) to overflow
+            // The predicate s.size() > 3 is important
+            // since it is possible for atoi(s.c_str()) to overflow
             if (s.size() > 3 || atoi(s.c_str()) > 255 || (s.size() > 1 && s[0] == '0')) return res;
             res.push_back(s);
             return res;
