@@ -2,14 +2,10 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         unordered_map<char, int> target, valid;
-        unordered_map<char, vector<int>> found;
+        unordered_map<char, queue<int>> found;
         queue<int> q;
-        string tt;
         for(int i = 0; i < t.size(); ++ i) {
             target[t[i]] ++;
-        }
-        for (unordered_map<char, int>::iterator it = target.begin(); it != target.end(); it ++) {
-            tt.push_back(it->first);
         }
         string res = "";
         int windowSize = 0;
@@ -20,10 +16,10 @@ public:
                 int n = q.front();
                 if (target.find(c) != target.end()) {
                     q.push(i);
-                    found[c].push_back(i);
+                    found[c].push(i);
                     if (s[n] == s[i]) { 
                         q.pop();
-                        found[s[n]].erase(found[s[n]].begin());
+                        found[s[n]].pop();
                         while (!q.empty()) {
                             n = q.front();
                             if (i - n + 1 < windowSize) {
@@ -31,7 +27,7 @@ public:
                                 windowSize = i - n + 1;
                             }
                             if (found[s[n]].size() > target[s[n]]) {
-                                found[s[n]].erase(found[s[n]].begin());
+                                found[s[n]].pop();
                                 q.pop();
                             }
                             else break;
@@ -44,15 +40,15 @@ public:
             else {
                 if (target.find(c) != target.end()) {
                     q.push(i);
-                    found[c].push_back(i);
+                    found[c].push(i);
                     if ((int)found[c].size() == target[c]) valid[c] = 1;
-                    if (valid.size() == tt.size()) {
+                    if (valid.size() == target.size()) {
                         flag = 1;
                         while (!q.empty()) {
                             int n = q.front();
                             res = s.substr(n, i - n + 1);
                             if (found[s[n]].size() > target[s[n]]) {
-                                found[s[n]].erase(found[s[n]].begin());
+                                found[s[n]].pop();
                                 q.pop();
                             }
                             else break;
