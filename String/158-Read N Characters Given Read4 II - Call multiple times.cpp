@@ -1,3 +1,5 @@
+// Method 1: Advanced loop
+
 // Forward declaration of the read4 API.
 int read4(char *buf);
 
@@ -22,14 +24,14 @@ public:
     }
 };
 
+// Method 2: Oridnary loop
+// Notice that to storage to pass a char* variable into the function read4(),
+// we must first allocate the space for char* in advanced, as follows:
+// char arr[4]; char *buf = arr;
+// Otherwise the return value will be illeagle (no enough space allocated for the result)
 
 class Solution {
 public:
-    /**
-     * @param buf Destination buffer
-     * @param n   Maximum number of characters to read
-     * @return    The number of characters read
-     */
     string rs = "";
     
     int read(char *buf, int n) {
